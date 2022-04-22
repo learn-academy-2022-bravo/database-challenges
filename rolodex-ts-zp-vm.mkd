@@ -1,0 +1,224 @@
+Create a new Rails app named 'rolodex_challenge'.
+Create the database.
+
+  Created database 'rolodex_ts_zp_vm_development'
+  Created database 'rolodex_ts_zp_vm_test'
+
+Generate a model called Person with a first_name, last_name, and phone. All fields should be strings.
+
+invoke  active_record
+   create    db/migrate/20220422175509_create_people.rb
+   create    app/models/person.rb
+
+
+Run a migration to set up the database.
+Open up Rails console.
+
+rails db:migrate
+== 20220422175509 CreatePeople: migrating =====================================
+-- create_table(:people)
+  -> 0.0088s
+== 20220422175509 CreatePeople: migrated (0.0088s) ============================
+
+➜  rolodex_ts_zp_vm git:(main) ✗ rails c
+Loading development environment (Rails 7.0.2.3)
+3.0.0 :001 >
+
+
+
+Actions
+
+Add five family members into the Person table in the Rails console.
+
+#<Person:0x0000000136bd4c78                                   
+ id: 1,                                                       
+ first_name: "Zane",                                          
+ last_name: "Prunella",                                       
+ created_at: Fri, 22 Apr 2022 17:59:51.218598000 UTC +00:00,  
+ updated_at: Fri, 22 Apr 2022 17:59:51.218598000 UTC +00:00>  
+3.0.0 :003 > Person.create(first_name: 'Toni', last_name: 'Shep')
+  TRANSACTION (0.2ms)  BEGIN
+  Person Create (0.4ms)  INSERT INTO "people" ("first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["first_name", "Toni"], ["last_name", "Shep"], ["created_at", "2022-04-22 18:00:54.316141"], ["updated_at", "2022-04-22 18:00:54.316141"]]                     
+  TRANSACTION (4.8ms)  COMMIT                                 
+ =>                                                           
+#<Person:0x0000000154c6ff98                                   
+ id: 2,                                                       
+ first_name: "Toni",                                          
+ last_name: "Shep",                                           
+ created_at: Fri, 22 Apr 2022 18:00:54.316141000 UTC +00:00,  
+ updated_at: Fri, 22 Apr 2022 18:00:54.316141000 UTC +00:00>  
+3.0.0 :004 > Person.create(first_name: 'Vanessa', last_name: 'Marin')
+  TRANSACTION (0.2ms)  BEGIN
+  Person Create (0.5ms)  INSERT INTO "people" ("first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["first_name", "Vanessa"], ["last_name", "Marin"], ["created_at", "2022-04-22 18:01:59.595541"], ["updated_at", "2022-04-22 18:01:59.595541"]]
+  TRANSACTION (4.5ms)  COMMIT
+ =>
+#<Person:0x0000000136d1e570
+ id: 3,
+ first_name: "Vanessa",
+ last_name: "Marin",
+ created_at: Fri, 22 Apr 2022 18:01:59.595541000 UTC +00:00,
+ updated_at: Fri, 22 Apr 2022 18:01:59.595541000 UTC +00:00>
+3.0.0 :005 > Person.create(first_name: 'Emily', last_name: 'Lopez')
+  TRANSACTION (0.2ms)  BEGIN
+  Person Create (0.4ms)  INSERT INTO "people" ("first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["first_name", "Emily"], ["last_name", "Lopez"], ["created_at", "2022-04-22 18:02:30.194218"], ["updated_at", "2022-04-22 18:02:30.194218"]]
+  TRANSACTION (5.1ms)  COMMIT
+ =>
+#<Person:0x0000000136913480
+ id: 4,
+ first_name: "Emily",
+ last_name: "Lopez",
+ created_at: Fri, 22 Apr 2022 18:02:30.194218000 UTC +00:00,
+ updated_at: Fri, 22 Apr 2022 18:02:30.194218000 UTC +00:00>
+3.0.0 :006 > Person.create(first_name: 'Camilla', last_name: 'Shep')
+  TRANSACTION (0.4ms)  BEGIN
+  Person Create (0.6ms)  INSERT INTO "people" ("first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["first_name", "Camilla"], ["last_name", "Shep"], ["created_at", "2022-04-22 18:02:57.315393"], ["updated_at", "2022-04-22 18:02:57.315393"]]
+  TRANSACTION (5.1ms)  COMMIT
+ =>
+#<Person:0x000000015774d080
+ id: 5,
+ first_name: "Camilla",
+ last_name: "Shep",
+ created_at: Fri, 22 Apr 2022 18:02:57.315393000 UTC +00:00,
+ updated_at: Fri, 22 Apr 2022 18:02:57.315393000 UTC +00:00>
+3.0.0 :007 >
+
+
+Retrieve all the items in the database.
+
+3.0.0 :007 > Person.all
+  Person Load (0.8ms)  SELECT "people".* FROM "people"
+ =>                                                           
+[#<Person:0x0000000154c5d0f0                                  
+  id: 1,                                                      
+  first_name: "Zane",                                         
+  last_name: "Prunella",                                      
+  created_at: Fri, 22 Apr 2022 17:59:51.218598000 UTC +00:00,
+  updated_at: Fri, 22 Apr 2022 17:59:51.218598000 UTC +00:00>,
+ #<Person:0x0000000154c5cfb0                                  
+  id: 2,                                                      
+  first_name: "Toni",                                         
+  last_name: "Shep",                                          
+  created_at: Fri, 22 Apr 2022 18:00:54.316141000 UTC +00:00,
+  updated_at: Fri, 22 Apr 2022 18:00:54.316141000 UTC +00:00>,
+ #<Person:0x0000000154c5cee8                                  
+  id: 3,
+  first_name: "Vanessa",
+  last_name: "Marin",
+  created_at: Fri, 22 Apr 2022 18:01:59.595541000 UTC +00:00,
+  updated_at: Fri, 22 Apr 2022 18:01:59.595541000 UTC +00:00>,
+ #<Person:0x0000000154c5ce20
+  id: 4,
+  first_name: "Emily",
+  last_name: "Lopez",
+  created_at: Fri, 22 Apr 2022 18:02:30.194218000 UTC +00:00,
+  updated_at: Fri, 22 Apr 2022 18:02:30.194218000 UTC +00:00>,
+ #<Person:0x0000000154c5cd30
+  id: 5,
+  first_name: "Camilla",
+  last_name: "Shep",
+  created_at: Fri, 22 Apr 2022 18:02:57.315393000 UTC +00:00,
+  updated_at: Fri, 22 Apr 2022 18:02:57.315393000 UTC +00:00>]
+
+
+Add yourself to the Person table.
+
+#<Person:0x0000000136b8e930
+ id: 6,
+ first_name: "Alex",
+ last_name: "Weitz",
+ created_at: Fri, 22 Apr 2022 18:05:39.386181000 UTC +00:00,
+ updated_at: Fri, 22 Apr 2022 18:05:39.386181000 UTC +00:00>
+3.0.0 :009 >
+
+Retrieve all the entries that have the same last_name as you.
+
+3.0.0 :009 > Person.where last_name: 'Shep'
+  Person Load (0.3ms)  SELECT "people".* FROM "people" WHERE "people"."last_name" = $1  [["last_name", "Shep"]]                               
+ =>                                                           
+[#<Person:0x0000000136d57500                                  
+  id: 2,                                                      
+  first_name: "Toni",                                         
+  last_name: "Shep",                                          
+  created_at: Fri, 22 Apr 2022 18:00:54.316141000 UTC +00:00,
+  updated_at: Fri, 22 Apr 2022 18:00:54.316141000 UTC +00:00>,
+ #<Person:0x0000000136d57438                                  
+  id: 5,                                                      
+  first_name: "Camilla",                                      
+  last_name: "Shep",                                          
+  created_at: Fri, 22 Apr 2022 18:02:57.315393000 UTC +00:00,
+  updated_at: Fri, 22 Apr 2022 18:02:57.315393000 UTC +00:00>]
+3.0.0 :010 >
+
+Update the phone number of the last entry in the database.
+
+3.0.0 :010 > Briar = Person.find(3)
+  Person Load (5.4ms)  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]                                   
+ =>                                                                   
+#<Person:0x0000000154d6d300                                           
+...                                                                   
+3.0.0 :011 > Briar.first_name = 'Briar'
+ => "Briar"
+3.0.0 :012 > Briar.save
+  TRANSACTION (0.4ms)  BEGIN
+  Person Update (7.7ms)  UPDATE "people" SET "first_name" = $1, "updated_at" = $2 WHERE "people"."id" = $3  [["first_name", "Briar"], ["updated_at", "2022-04-22 18:16:21.568998"], ["id", 3]]                                        
+  TRANSACTION (0.5ms)  COMMIT                                         
+ => true                                                              
+3.0.0 :013 >
+
+Retrieve the first_name of the third Person in the database.
+
+3.0.0 :016 > Person.where first_name:'Briar'
+  Person Load (1.3ms)  SELECT "people".* FROM "people" WHERE "people"."first_name" = $1  [["first_name", "Briar"]]                                              
+ =>        
+
+
+ Update all the family members with the same last_name as you, to have the same phone number as you.
+Remove all family members that do not have your last_name.
+
+3.0.0 :019 > Person.where.not(last_name: 'Prunella').destroy_all
+  Person Load (0.5ms)  SELECT "people".* FROM "people" WHERE "people"."last_name" != $1  [["last_name", "Prunella"]]                                            
+  TRANSACTION (0.2ms)  BEGIN                                                    
+  Person Destroy (0.4ms)  DELETE FROM "people" WHERE "people"."id" = $1  [["id", 4]]                                                                            
+  TRANSACTION (3.3ms)  COMMIT                                                   
+  TRANSACTION (0.1ms)  BEGIN                                                    
+  Person Destroy (0.3ms)  DELETE FROM "people" WHERE "people"."id" = $1  [["id", 6]]                                                                            
+  TRANSACTION (0.2ms)  COMMIT                                                   
+  TRANSACTION (0.1ms)  BEGIN                                                    
+  Person Destroy (0.2ms)  DELETE FROM "people" WHERE "people"."id" = $1  [["id", 3]]                                                                            
+  TRANSACTION (0.2ms)  COMMIT                                                   
+ =>                                                                             
+[#<Person:0x0000000154d249c0
+  id: 4,
+  first_name: "Emily",
+  last_name: "Lopez",
+  created_at: Fri, 22 Apr 2022 18:02:30.194218000 UTC +00:00,
+  updated_at: Fri, 22 Apr 2022 18:02:30.194218000 UTC +00:00>,
+ #<Person:0x0000000154d248f8
+  id: 6,
+  first_name: "Alex",
+  last_name: "Weitz",
+  created_at: Fri, 22 Apr 2022 18:05:39.386181000 UTC +00:00,
+  updated_at: Fri, 22 Apr 2022 18:05:39.386181000 UTC +00:00>,
+ #<Person:0x0000000154d24830
+  id: 3,
+  first_name: "Briar",
+  last_name: "Marin",
+  created_at: Fri, 22 Apr 2022 18:01:59.595541000 UTC +00:00,
+  updated_at: Fri, 22 Apr 2022 18:16:21.568998000 UTC +00:00>]
+3.0.0 :020 > Person.all
+  Person Load (0.6ms)  SELECT "people".* FROM "people"
+ =>                                                           
+[#<Person:0x0000000135f7a388                                  
+  id: 1,                                                      
+  first_name: "Zane",                                         
+  last_name: "Prunella",                                      
+  created_at: Fri, 22 Apr 2022 17:59:51.218598000 UTC +00:00,
+  updated_at: Fri, 22 Apr 2022 17:59:51.218598000 UTC +00:00>]
+3.0.0 :021 >
+
+
+
+
+
+
+                       
