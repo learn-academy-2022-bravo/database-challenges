@@ -13,12 +13,33 @@
 # Actions
 
 # Add five family members into the Person table in the Rails console.
+
+Person.create(first_name:'Ricky', last_name:'Bobby', phone: '555-5555')
+
+
+
 # Retrieve all the items in the database.
+Person.all
+
 # Add yourself to the Person table.
+Person.create(first_name:'Kathy', last_name:'Ly', phone: '555-5555')
+
 # Retrieve all the entries that have the same last_name as you.
+
+Person.all
 # Update the phone number of the last entry in the database.
+kathy = Person.where(phone: '555-5555')
+kathy.update(phone:'777-7777')
+
 # Retrieve the first_name of the third Person in the database.
+first_name = Person.find(3)
+3.0.0 :022 > first_name.first_name
+ => "Kathy" 
+3.0.0 :023 > 
+
 # Stretch Challenges
 
 # Update all the family members with the same last_name as you, to have the same phone number as you.
+
+
 # Remove all family members that do not have your last_name.
