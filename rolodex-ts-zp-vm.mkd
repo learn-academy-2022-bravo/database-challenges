@@ -19,7 +19,7 @@ rails db:migrate
 -- create_table(:people)
   -> 0.0088s
 == 20220422175509 CreatePeople: migrated (0.0088s) ============================
-
+ 
 ➜  rolodex_ts_zp_vm git:(main) ✗ rails c
 Loading development environment (Rails 7.0.2.3)
 3.0.0 :001 >
