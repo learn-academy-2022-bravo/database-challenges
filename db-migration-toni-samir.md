@@ -1,4 +1,4 @@
-*******
+git*******
 Create a new Rails application called 'favorite_movies'.
 Create the database
 Generate a Movie model with a title attribute and a category attribute
